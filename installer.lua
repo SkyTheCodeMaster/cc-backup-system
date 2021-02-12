@@ -8,6 +8,14 @@ if not fs.exists("redrun.lua") then
   f.close()
   h.close()
 end
+if not fs.exists("paste.lua") then
+  local f = fs.open("paste.lua","w")
+  local h,err = http.get("https://gist.github.com/SkyTheCodeMaster/12aeb6cd7d2890640bd81bab66261a4b")
+  if not h then error(err) end
+  f.write(h.readAll())
+  f.close()
+  h.close()
+end
 
 -- move `startup` to another file if it exists
 if fs.exists("startup") then
