@@ -10,7 +10,7 @@ if not fs.exists("redrun.lua") then
 end
 if not fs.exists("paste.lua") then
   local f = fs.open("paste.lua","w")
-  local h,err = http.get("https://gist.github.com/SkyTheCodeMaster/12aeb6cd7d2890640bd81bab66261a4b")
+  local h,err = http.get("https://raw.githubusercontent.com/SkyTheCodeMaster/cc-backup-system/main/pastebin.lua")
   if not h then error(err) end
   f.write(h.readAll())
   f.close()
