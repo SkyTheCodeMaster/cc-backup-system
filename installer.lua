@@ -16,6 +16,14 @@ if not fs.exists("paste.lua") then
   f.close()
   h.close()
 end
+if not fs.exists("sha256.lua") then
+  local f = fs.open("sha256.lua","w")
+  local h,err = http.get("https://pastebin.com/raw/6UV4qfNF")
+  if not h then error(err) end
+  f.write(h.readAll())
+  f.close()
+  h.close()
+end
 
 -- move `startup` to another file if it exists
 if fs.exists("startup") then
