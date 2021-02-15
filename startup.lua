@@ -128,6 +128,17 @@ _G.Skynet = {
   redrun = redrun,
   paste = paste,
   sha256 = sha256,
+  advanced = {
+    main = main,
+    recurseList = recurseList,
+    addIdentification = addIdentification,
+    combine = combine,
+    genString = genString,
+    removeROM = removeROM,
+    hread = hread,
+    fread = fread,
+    fwrite = fwrite,
+  },
 }
 print("Skynet T&R Online #" .. tostring(id))
 if fs.exists("startup.bak") then
