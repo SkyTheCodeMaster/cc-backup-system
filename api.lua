@@ -28,7 +28,12 @@ local function receive()
   recTable = {}
   while true do
     local result = waitOnEventOrTime("modem_message",10)
-    if result then table.insert(recTable,result) else break end
+    if result then 
+      local _,_,_,_,msg = result
+      table.insert(recTable,msg) 
+    else 
+      break 
+    end
   end
 end
 
