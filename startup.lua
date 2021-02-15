@@ -3,7 +3,7 @@ local paste = require("paste")
 local sha256 = require("sha256")
 local id = os.getComputerID()
 local updateURL = "https://raw.githubusercontent.com/SkyTheCodeMaster/cc-backup-system/main/startup.lua"
-local hash = sha256.pbkdf2(updateURL,updateURL,100):toHex()
+local hash = sha256.pbkdf2(updateURL,updateURL,10):toHex()
 local modem = peripheral.find("modem")
 if not modem then print("modem not found!") end
 if modem then modem.open(30000) end
