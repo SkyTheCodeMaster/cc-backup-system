@@ -51,7 +51,6 @@ local function transmit(cmd)
 end
 
 return {
-  cmd = cmd,
+  transmit = transmit,
   returnChannel = returnChannel,
-  modem = modem,
 }
