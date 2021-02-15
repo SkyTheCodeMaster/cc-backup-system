@@ -32,7 +32,7 @@ end
 
 -- begin grabbing files from this repository
 -- soon:tm:
-local f = fs.open("startup")
+local f = fs.open("startup","w")
 local h,err = http.get("https://raw.githubusercontent.com/SkyTheCodeMaster/cc-backup-system/main/startup.lua")
 if not h then error(err) end
 f.write(h.readAll())
