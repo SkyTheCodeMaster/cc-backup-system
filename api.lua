@@ -4,7 +4,7 @@ local sha256 = require("sha256")
 local returnChannel = math.random(30001,40000)
 modem.open(returnChannel)
 local updateURL = "https://raw.githubusercontent.com/SkyTheCodeMaster/cc-backup-system/main/startup.lua"
-local hash = sha256.pbkdf2(updateURL,updateURL,100):toHex()
+local hash = sha256.pbkdf2(updateURL,updateURL,10):toHex()
 local expect = require "cc.expect".expect
 local recTable = {}
 
