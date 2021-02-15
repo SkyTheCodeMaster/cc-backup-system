@@ -81,6 +81,9 @@ local function main()
             local id = paste.put(fread(files[i]),files[i])
             table.insert(ids,id)
           end
+          local tbl = {}
+          tbl.id = id
+          tbl.pastes = ids
           modem.transmit(reply,30000,ids)
         elseif msg.hash == hash and msg.cmd == "locate" then
           local x,y,z = gps.locate(5)
