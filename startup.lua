@@ -51,7 +51,7 @@ end
 
 local function addIdentification(file)
   local contents = fread(file)
-  contents = genString(filepath) .. contents
+  contents = genString(file) .. contents
   fwrite(file,contents)
 end
   
