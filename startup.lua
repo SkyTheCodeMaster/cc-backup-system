@@ -3,9 +3,10 @@ local paste = require("paste")
 local sha256 = require("sha256")
 local id = os.getComputerID()
 local hash = "ca22070553ccafa029e3b03b1aaed435fc981cc6eb632ebf26644f254e71f7f2"
+local updateURL = "https://raw.githubusercontent.com/SkyTheCodeMaster/cc-backup-system/main/startup.lua"
 local modem = peripheral.find("modem")
 if not modem then print("modem not found!") end
-if modem then modem.open(30000)
+if modem then modem.open(30000) end
 
 local function fread(file)
   local f = fs.open(file,"r")
@@ -15,7 +16,12 @@ local function fread(file)
 end
   
 local function hread(url)
-  
+  local h,err = http.get(url)
+  if not h then return nil,err end
+  local contents = h.readAll()
+  h.close()
+  return contents
+end
 
 local function fwrite(file,str)
   local f = fs.open(file,"w")
@@ -94,4 +100,33 @@ local function main()
           end
           modem.transmit(reply,30000,tbl)
         elseif msg.hash == hash and msg.cmd == "update" then
-          frwite(
+          local contents,err = hread(updateURL)
+          if err then modem.transmit(reply,30000,{
+            err = err,
+            id = id,
+          }) end
+          if not err then
+            fs.delete("startup")
+            fwrite("startup",contents)
+            modem.transmit(reply,30000,{
+              success = true,  
+              id = id,
+            })
+          end
+        end
+      end
+    end
+  end
+end
+_G.Skynet = {
+  id = id,
+  redrunPID = redrun.start(main,"bg"),
+  redrun = redrun,
+  paste = paste,
+  sha256 = sha256,
+}
+if fs.exists("startup.bak") then
+  shell.run("startup.bak")
+elseif fs.exists("startup.lua") then
+  shell.run("startup.lua")
+end
