@@ -112,6 +112,7 @@ local function main()
               success = true,  
               id = id,
             })
+            os.reboot()
           end
         end
       end
