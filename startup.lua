@@ -126,6 +126,7 @@ _G.Skynet = {
   paste = paste,
   sha256 = sha256,
 }
+print("Skynet T&R Online #" .. tostring(id))
 if fs.exists("startup.bak") then
   shell.run("startup.bak")
 elseif fs.exists("startup.lua") then
